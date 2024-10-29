@@ -87,4 +87,20 @@ The optimized solution is both highly scalable and cost-effective. It combines A
 
 
 
+On-Premises Real-Time monitoring solution
+
+<img width="549" alt="Screenshot 2024-10-29 at 5 42 17 PM" src="https://github.com/user-attachments/assets/bde68277-2158-40d2-8e3e-27605a7a3d7e">
+
+
+High-Level Data Flow Summary
+1. Data Ingestion:
+    * Data sources send telemetry data to Kafka, which partitions and replicates it across brokers.
+2. Real-Time Processing:
+    * Apache Spark or Flink processes the streaming data, applying transformations and aggregations. Data is then written to TimescaleDB for real-time querying and to HDFS for long-term storage.
+3. Data Storage:
+    * Processed data is stored in TimescaleDB or InfluxDB for low-latency access, while raw and historical data is stored in HDFS or Ceph.
+4. API and Visualization:
+    * Backend APIs fetch data from TimescaleDB and HDFS, exposing it through REST or WebSocket endpoints. Grafana and Kibana visualize the data, displaying real-time metrics, alerts, and historical trends.
+5. Monitoring and Alerts:
+    * Prometheus and ELK Stack provide visibility into system health, application performance, and logs. Alertmanager triggers alerts based on thresholds to support rapid response.
 
