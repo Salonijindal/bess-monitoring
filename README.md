@@ -1,6 +1,7 @@
 Demo for Real-Time Data Processing Architecture
 
-<img width="588" alt="Screenshot 2024-10-29 at 1 42 25 AM" src="https://github.com/user-attachments/assets/f904de8d-c106-47d0-9aa8-f6492ac1aef7">
+<img width="602" alt="Screenshot 2024-10-29 at 11 11 43 AM" src="https://github.com/user-attachments/assets/bfd9aa13-ee1c-4105-84f9-df54e08ef325">
+
 
 
 
@@ -50,7 +51,39 @@ AWS Lambda functions provide serverless compute to execute quick, event-driven q
 
 
 Proposed Solutions for high frequency and low latency architecture
-<img width="552" alt="Screenshot 2024-10-29 at 1 42 46 AM" src="https://github.com/user-attachments/assets/fea981d6-f612-4eb7-9d0c-acbb02e2c8f5">
+
+
+
+<img width="555" alt="Screenshot 2024-10-29 at 11 11 52 AM" src="https://github.com/user-attachments/assets/24e2153b-aa5e-449b-b186-bb24a42adade">
+
+
+
+1. Ingestion Layer (AWS MSK Kafka): We keep MSK as our data ingestion layer due to its reliability in handling high-throughput data from multiple BESS sources.
+
+2.Data Processing Layer (EMR or ETL): For optimized processing, we can use EMR or potentially ETL processes. Here, data is filtered, processed, and any alerts or derived metrics are generated. The processed data then feeds directly into TimescaleDB.
+
+3. Optimized Storage in TimescaleDB: For real-time querying and lower latency, TimescaleDB is the preferred choice. It’s a time-series database optimized for high-frequency data and time-based analytics. Using TimescaleDB reduces the need for S3 and Glue in the real-time query flow, as we can store and retrieve data with minimal latency.
+Connection Pooling and Query Optimization: TimescaleDB is configured with connection pooling to efficiently handle multiple connections. Queries are optimized to return only the necessary data, avoiding excess load on the database.
+Rate Limiting and Access Control: By setting up rate limits on API Gateway and TimescaleDB connections, we ensure that the backend isn’t overwhelmed by excessive requests, maintaining steady performance across users
+
+4. API and WebSocket for Real-Time Updates: In this setup, Lambda functions trigger a WebSocket API rather than a RESTful API, allowing us to push updates to the frontend dashboard as soon as new data arrives. This improves responsiveness and provides a live, updated view for monitoring.
+API Gateway’s High Concurrency Support: Amazon API Gateway, with WebSocket support, handles thousands of concurrent requests, distributing the load across multiple Lambda functions and scaling automatically as the user base grows.
+WebSocket API for Real-Time Updates: Using WebSocket over HTTP allows the system to push data to connected clients efficiently, reducing the overhead of client polling and handling high numbers of concurrent users with minimal latency.
+Connection Limits and Throttling: API Gateway allows us to set usage limits and throttling to prevent any single user from monopolizing resources, ensuring fair and efficient use across all connections.
+
+5. Microservices Architecture: Microservices allow us to scale each service independently as the data load increases. This modularity ensures that each component can scale without impacting others.
+Load Balancers for Microservices: If microservices are used for various parts of the system (e.g., data ingestion, processing, API services), each microservice is deployed with load balancing to distribute traffic across instances, ensuring that no single instance is overloaded.
+Failover and Fault Tolerance: For critical components like TimescaleDB, using replicas or clustering helps ensure high availability. Load balancers distribute connections across these replicas, maintaining performance even if a primary instance experiences high load or downtime.
+
+6. Caching Layer: To improve performance, especially under heavy load, we implement a caching layer with Redis or Amazon ElastiCache. This layer caches frequently requested data, reducing the load on TimescaleDB and improving response times for the frontend.
+
+
+7. Monitoring and Load Balancing
+Real-Time Monitoring with CloudWatch: Using CloudWatch to monitor data ingestion, processing latencies, and API response times allows for proactive scaling and adjustment to maintain responsiveness.
+Load Balancing Across Microservices: By designing the system with a microservices architecture, individual services handling ingestion, processing, storage, and querying can be scaled independently, ensuring that a spike in one part of the system doesn’t impact the overall responsiveness.
+
+
+The optimized solution is both highly scalable and cost-effective. It combines AWS services for ingestion and processing with TimescaleDB for efficient storage and querying. API Gateway and WebSocket improve the real-time data experience, while microservices and caching ensure a responsive and resilient system.
 
 
 
