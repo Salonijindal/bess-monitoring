@@ -1,6 +1,7 @@
 Demo for Real-Time Data Processing Architecture
 
-<img width="827" alt="Screenshot 2024-10-28 at 11 37 47 PM" src="https://github.com/user-attachments/assets/8826c48c-bfff-42df-a6c9-6de1533317fb">
+<img width="588" alt="Screenshot 2024-10-29 at 1 42 25 AM" src="https://github.com/user-attachments/assets/f904de8d-c106-47d0-9aa8-f6492ac1aef7">
+
 
 
 
@@ -49,7 +50,8 @@ AWS Lambda functions provide serverless compute to execute quick, event-driven q
 
 
 Proposed Solutions for high frequency and low latency architecture
-<img width="644" alt="Screenshot 2024-10-29 at 12 27 50 AM" src="https://github.com/user-attachments/assets/0457fdf7-cc89-4216-9b32-2a513e31e682">
+<img width="552" alt="Screenshot 2024-10-29 at 1 42 46 AM" src="https://github.com/user-attachments/assets/fea981d6-f612-4eb7-9d0c-acbb02e2c8f5">
+
 
 
 
