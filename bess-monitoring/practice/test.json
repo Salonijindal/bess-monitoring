@@ -1,0 +1,27 @@
+{
+    "symbol": "AAPL",
+    "financials": [
+      {
+        "reportDate": "2017-03-31",
+        "grossProfit": 20591000000,
+        "costOfRevenue": 32305000000,
+        "operatingRevenue": 52896000000,
+        "totalRevenue": 52896000000,
+        "operatingIncome": 14097000000,
+        "netIncome": 11029000000,
+        "researchAndDevelopment": 2776000000,
+        "operatingExpense": 6494000000,
+        "currentAssets": 101990000000,
+        "totalAssets": 334532000000,
+        "totalLiabilities": 200450000000,
+        "currentCash": 15157000000,
+        "currentDebt": 13991000000,
+        "totalCash": 67101000000,
+        "totalDebt": 98522000000,
+        "shareholderEquity": 134082000000,
+        "cashChange": -1214000000,
+        "cashFlow": 12523000000,
+        "operatingGainsLosses": null
+      }
+    ]
+  }

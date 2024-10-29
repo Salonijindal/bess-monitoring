@@ -1,0 +1,36 @@
+
+
+// ./bin/kafka-topics.sh --create --bootstrap-server b-2.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-3.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-1.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092 --replication-factor 2 --partitions 1 --topic bess-monitoring-topic
+
+
+
+// ./bin/kafka-topics.sh --bootstrap-server b-2.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-3.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-1.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092 --list
+
+
+
+// ./bin/kafka-console-producer.sh --bootstrap-server b-2.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-3.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-1.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092 --topic bess-monitoring-topic
+./bin/kafka-console-producer.sh --broker-list b-2.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-3.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-1.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092 --topic bess-monitoring-topic
+
+
+
+// ./bin/kafka-console-consumer.sh --bootstrap-server b-2.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-3.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092,b-1.bessmonitoringmsk.4u6ji5.c4.kafka.ca-central-1.amazonaws.com:9092 --topic bess-monitoring-topic --from-beginning
+
+
+
+
+spark-submit --packages org.apache.spark:spark-streaming-kafka-0-10_2.12:3.2.0,org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0 main.py
+
+spark-submit --packages org.apache.spark:spark-streaming-kafka-0-10_2.12:3.5.2,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1 main.py
+
+
+
+
+spark-submit --packages org.apache.spark:spark-streaming-kafka-0-10_2.12:3.5.1,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1 main.py --data_source s3://bess-monitoring-s3/bess/2024-10/input/Food_Establishment_Inspection_Data_20241028.csv --output_uri s3a://bess-monitoring-s3/bess/2024-10/output/
+
+
+
+
+Final command:
+
+spark-submit --packages org.apache.spark:spark-streaming-kafka-0-10_2.12:3.5.1,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1,org.apache.hadoop:hadoop-aws:3.3.4 main.py --data_source s3://bess-monitoring-s3/bess/2024-10/input/Food_Establishment_Inspection_Data_20241028.csv --output_uri s3a://bess-monitoring-s3/bess/2024-10/output/
+
