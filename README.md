@@ -60,7 +60,7 @@ Proposed Solutions for high frequency and low latency architecture
 
 1. Ingestion Layer (AWS MSK Kafka): We keep MSK as our data ingestion layer due to its reliability in handling high-throughput data from multiple BESS sources.
 
-2.Data Processing Layer (EMR or ETL): For optimized processing, we can use EMR or potentially ETL processes. Here, data is filtered, processed, and any alerts or derived metrics are generated. The processed data then feeds directly into TimescaleDB.
+2. Data Processing Layer (EMR or ETL): For optimized processing, we can use EMR or potentially ETL processes. Here, data is filtered, processed, and any alerts or derived metrics are generated. The processed data then feeds directly into TimescaleDB.
 
 3. Optimized Storage in TimescaleDB: For real-time querying and lower latency, TimescaleDB is the preferred choice. It’s a time-series database optimized for high-frequency data and time-based analytics. Using TimescaleDB reduces the need for S3 and Glue in the real-time query flow, as we can store and retrieve data with minimal latency.
 Connection Pooling and Query Optimization: TimescaleDB is configured with connection pooling to efficiently handle multiple connections. Queries are optimized to return only the necessary data, avoiding excess load on the database.
